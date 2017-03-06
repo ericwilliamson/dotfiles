@@ -51,13 +51,13 @@ setopt menucomplete
 
 # OS Agnostic aliases
 alias reload!='. ~/.zshrc'
+alias be='bundle exec'
 
 alias df='df -h'
 alias diff='colordiff'
 alias grep='grep --color=auto'
 alias ping='ping -c 2'
 alias tail='tail -n100'
-alias pmb='puppet module build'
 alias fpull='!git fetch upstream && git merge @{u} --ff-only'
 alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
 alias gl='git pull --prune'
@@ -84,7 +84,6 @@ if [[ $(uname) = "Darwin" ]]; then
   alias updatedb='sudo /usr/libexec/locate.updatedb'
   alias ll='ls -liAFG'
   alias start_watchr='cd /s/pe-dev-scripts/workflow && watchr installer.watchr'
-  alias be='bundle exec'
 elif [[ $(uname) = "Linux" ]]; then
   alias ll='ls -liAFG --color'
 fi

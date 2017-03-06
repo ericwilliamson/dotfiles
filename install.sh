@@ -79,6 +79,11 @@ function setup_git() {
 
 }
 
+function setup_antigen() {
+  echo 'Setting up antigen (zsh package manager)'
+  git clone https://github.com/zsh-users/antigen.git "${HOME}/.antigen
+}
+
 echo "Setting up Operating System..."
 
 set -e
@@ -99,7 +104,7 @@ set -e
     echo "Using yum to install packages...."
     sudo yum update
     sudo yum install -y epel-release
-    sudo yum install -y "${packages[@]}" zsh
+    sudo yum install -y "${packages[@]}" zsh cmake
   elif [[ "$OSPACKMAN" == "aptget" ]]; then
     echo "You are running apt-get"
     echo "Using apt-get to install packages...."

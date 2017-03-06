@@ -41,6 +41,7 @@ Bundle 'gmarik/vundle'
 Bundle 'L9'
 Bundle 'Gundo'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-surround'
 
 " Vim file tree explorer
 Bundle 'scrooloose/nerdtree'
@@ -216,5 +217,9 @@ autocmd VimEnter * wincmd p
 " typing :w!! will auto exapnd to :w !sudo tee % so you can save a readonly file
 cmap w!! w !sudo tee >/dev/null %
 command! -nargs=1 -range TabFirst exec <line1> . ',' . <line2> . 'Tabularize /^[^' . escape(<q-args>, '\^$.[?*~') . ']*\zs' . escape(<q-args>, '\^$.[?*~')
+
+augroup Puppet
+    autocmd! BufEnter *.pp set filetype=puppet tabstop=2 sts=2 shiftwidth=2
+augroup end
 
 let g:puppet_align_hashes=0
