@@ -1,6 +1,6 @@
 export EDITOR='vim'
-if [ -d "/usr/local/homebrew" ]; then
-  export PATH="$HOME/bin:$HOME/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+if [ -d "/usr/local/Homebrew" ]; then
+  export PATH="$HOME/bin:$HOME/.bin:/usr/local/Homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
 else
   export PATH="$HOME/bin:$HOME/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
 fi
