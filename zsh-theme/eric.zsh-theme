@@ -41,8 +41,9 @@ export PROMPT='[%D{%H:%M:%S}][$USER@$(hostname -f)]%{$fg[cyan]%}[%~% ]%{$reset_c
 precmd() {
   title "zsh" "%m" "%55<...<%~"
   echo -e "\033];$(hostname -f)\007"
-  if ! [[ -z "$(ruby_version)" ]]
-  then
+  if [[ -f "pom.xml" ]]; then
+    export RPROMPT='%{$fg[cyan]%}$(git_custom_status)%{$fg[white]%}[$(pomv)]%{$reset_color%}'
+  elif ! [[ -z "$(ruby_version)" ]]; then
     export RPROMPT='%{$fg[cyan]%}$(git_custom_status)%{$fg[white]%}[$(ruby_version)]%{$reset_color%}'
   else
     export RPROMPT='%{$fg[cyan]%}$(git_custom_status)%{$reset_color%}'

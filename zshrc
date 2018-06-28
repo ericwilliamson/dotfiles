@@ -21,8 +21,8 @@ ZSH_THEME="eric"
 LSCOLORS="gxfxcxdxbxegedabagacad"
 
 if hash brew 2>/dev/null; then
-  if [ -f `brew --prefix`/Cellar/z/1.9/etc/profile.d/z.sh ]; then
-    . `brew --prefix`/Cellar/z/1.9/etc/profile.d/z.sh
+  if [ -f /usr/local/Cellar/z/1.9/etc/profile.d/z.sh ]; then
+    . /usr/local/Cellar/z/1.9/etc/profile.d/z.sh
   fi
 else
   . ~/.z.sh
@@ -92,3 +92,23 @@ fi
 fixssh() {
     eval $(tmux show-env |sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p')
 }
+
+pomd() {
+    grep $1 -A1 pom.xml | tail -1 | sed 's/.*<version>//' | sed 's/<\/version>//'
+}
+
+# Prints artifact version from [.|<repo>]/pom.xml
+pomv() {
+    if [ -z $1 ]; then
+        repo=.
+    else
+        repo=$DEV_ROOT/$1
+    fi
+    xpath $repo/pom.xml "project/version/text()" 2>/dev/null
+    echo
+}
+
+
+# For pipelines
+export DEV_ROOT=/s/
+export JAVA_HOME=$(/usr/libexec/java_home)

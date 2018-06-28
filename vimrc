@@ -46,7 +46,8 @@ Bundle 'tpope/vim-surround'
 " Vim file tree explorer
 Bundle 'scrooloose/nerdtree'
 " syntax checking plugin for Vim
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 " Syntax checking for puppet
 Bundle 'rodjek/vim-puppet'
 " Tabular
@@ -61,6 +62,15 @@ Bundle 'tpope/vim-fugitive'
 " theme
 Plugin 'jacoborus/tender'
 Plugin 'itchyny/lightline.vim'
+
+" Markdown / Writing plugins
+Plugin 'plasticboy/vim-markdown'
+Plugin 'junegunn/goyo.vim'
+
+" react / JS
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'skywind3000/asyncrun.vim'
 
 " Installing plugins the first time
 " If exists, skip
@@ -111,8 +121,10 @@ set backspace=indent,eol,start
 " Line numbering
 set number
 
+set nofoldenable    " disable folding
+
 " Vim window stuff
-set guifont=Inconsolata:h15
+set guifont=Monaco:h15
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
@@ -166,7 +178,7 @@ set smartindent
 set tabstop=2 shiftwidth=2 expandtab
 
 " Set line width to 90 when writing markdown
-autocmd BufRead,BufNewFile *.md setlocal tw=90
+autocmd BufRead,BufNewFile *.md setlocal tw=80
 
 "autocmd VimEnter * :IndentGuidesEnable
 "let g:indent_guides_auto_colors = 0
@@ -223,3 +235,9 @@ augroup Puppet
 augroup end
 
 let g:puppet_align_hashes=0
+
+" Autoline JS files on save
+autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+
+" Disable backup of crontab so we can edit it on osx
+autocmd filetype crontab setlocal nobackup nowritebackup

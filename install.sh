@@ -81,7 +81,7 @@ function setup_git() {
 
 function setup_antigen() {
   echo 'Setting up antigen (zsh package manager)'
-  git clone https://github.com/zsh-users/antigen.git "${HOME}/.antigen
+  git clone https://github.com/zsh-users/antigen.git "${HOME}/.antigen"
 }
 
 echo "Setting up Operating System..."
@@ -119,11 +119,12 @@ set -e
   source update-zsh.sh
   echo "Installing dotfiles"
   symlink_files
-  echo "Installing vim-colors"
-  $(ln -sf "$PWD/vim-colors" "$HOME/.vim/colors")
 
   echo "Installing vim vundles..."
   vim +BundleInstall +qall
+
+  echo "Installing vim-colors"
+  $(ln -sf "$PWD/vim-colors" "$HOME/.vim/colors")
   echo "Changing shells to ZSH"
   chsh -s /bin/zsh
 
